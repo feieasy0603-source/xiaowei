@@ -1,0 +1,39 @@
+/* 紧凑表单：单选项横向间距 */
+.compact-form-shell .form-body .el-radio-group.compact-radios {
+  display: inline-flex !important;
+  flex-wrap: wrap;
+  align-items: center;
+  column-gap: 72px;
+  row-gap: 12px;
+  vertical-align: middle;
+}
+
+.compact-form-shell .form-body .el-radio-group.compact-radios--loose {
+  column-gap: 96px;
+}
+
+.compact-form-shell .form-body .el-radio-group.compact-radios .el-radio {
+  margin-right: 0 !important;
+  margin-left: 0 !important;
+  height: auto;
+}
+
+.compact-form-shell .form-body .el-radio-group.compact-radios .el-radio__label {
+  font-size: 14px;
+  color: var(--xw-text);
+  padding-left: 10px;
+}
+
+.compact-form-shell .form-row-content > .el-radio-group.compact-radios {
+  flex: 1;
+}
+
+@media (max-width: 560px) {
+  .compact-form-shell .form-body .el-radio-group.compact-radios {
+    column-gap: 40px;
+  }
+
+  .compact-form-shell .form-body .el-radio-group.compact-radios--loose {
+    column-gap: 48px;
+  }
+}

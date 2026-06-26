@@ -1,0 +1,35 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+xiaowei-server/.env*
+.env*
+!.env.example
+!.env.*.example
+!**/.env.example
+!**/.env.*.example
+xiaowei-server/data/h2/
+xiaowei-server/data/uploads/
+xiaowei-server/target/
+.!*
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.run/
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?

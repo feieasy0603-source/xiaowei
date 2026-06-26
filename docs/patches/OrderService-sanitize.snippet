@@ -1,0 +1,11 @@
+// OrderService.java — lookupByOrderNo / lookupByJobNo 返回前调用
+
+private Map<String, Object> sanitizePublicLookup(Map<String, Object> dto) {
+    Map<String, Object> safe = new HashMap<>(dto);
+    safe.remove("userId");
+    safe.remove("channelId");
+    return safe;
+}
+
+// lookupByOrderNo 末尾: return sanitizePublicLookup(dto);
+// lookupByJobNo 末尾: return sanitizePublicLookup(dto);

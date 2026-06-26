@@ -1,0 +1,113 @@
+:root {
+  --admin-primary: #2563eb;
+  --admin-primary-soft: #eff6ff;
+  --admin-sidebar: #0f172a;
+  --admin-sidebar-hover: #1e293b;
+  --admin-bg: #f1f5f9;
+  --admin-card: #ffffff;
+  --admin-text: #0f172a;
+  --admin-muted: #64748b;
+  --admin-border: #e2e8f0;
+  --admin-radius: 12px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#app {
+  margin: 0;
+  min-height: 100%;
+  font-family:
+    'PingFang SC',
+    'Hiragino Sans GB',
+    'Microsoft YaHei',
+    system-ui,
+    sans-serif;
+  color: var(--admin-text);
+  background: var(--admin-bg);
+}
+
+.admin-main {
+  padding: 20px 24px 32px;
+  min-height: calc(100vh - 56px);
+}
+
+.admin-card {
+  background: var(--admin-card);
+  border: 1px solid var(--admin-border);
+  border-radius: var(--admin-radius);
+  padding: 16px 20px;
+}
+
+.admin-page-title {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.admin-page-desc {
+  margin: 6px 0 0;
+  font-size: 13px;
+  color: var(--admin-muted);
+}
+
+.admin-toolbar {
+  margin-top: 16px;
+}
+
+.admin-stat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 14px;
+  margin-top: 16px;
+}
+
+.admin-stat-card {
+  background: var(--admin-card);
+  border: 1px solid var(--admin-border);
+  border-radius: var(--admin-radius);
+  padding: 16px 18px;
+  transition: box-shadow 0.2s;
+}
+
+.admin-stat-card:hover {
+  box-shadow: 0 4px 14px rgb(15 23 42 / 6%);
+}
+
+.admin-stat-card .label {
+  font-size: 13px;
+  color: var(--admin-muted);
+}
+
+.admin-stat-card .value {
+  margin-top: 8px;
+  font-size: 26px;
+  font-weight: 700;
+}
+
+.admin-stat-card .value.small {
+  font-size: 18px;
+}
+
+.admin-stat-card.accent {
+  border-color: #bfdbfe;
+  background: linear-gradient(135deg, #eff6ff 0%, #fff 100%);
+}
+
+.admin-json {
+  margin: 0;
+  padding: 12px;
+  background: #0f172a;
+  color: #e2e8f0;
+  border-radius: 8px;
+  font-size: 12px;
+  line-height: 1.5;
+  max-height: 320px;
+  overflow: auto;
+  white-space: pre-wrap;
+  word-break: break-all;
+}

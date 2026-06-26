@@ -1,0 +1,6 @@
+-- 全文生成结果常超过 MySQL TEXT(64KB) 上限，导致任务在保存时失败
+ALTER TABLE jobs MODIFY COLUMN result_json LONGTEXT;
+ALTER TABLE jobs MODIFY COLUMN payload_json LONGTEXT;
+ALTER TABLE jobs MODIFY COLUMN error_msg LONGTEXT;
+
+ALTER TABLE papers MODIFY COLUMN draft_json LONGTEXT;

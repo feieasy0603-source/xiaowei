@@ -1,0 +1,10 @@
+// ProductController.java — GET /{id}/quote 增加：
+
+import com.xiaowei.security.SecurityUtils;
+
+@GetMapping("/{id}/quote")
+public ApiResponse<Map<String, Object>> quote(...) {
+    Long uid = SecurityUtils.currentUserId();
+    if (uid == null) return ApiResponse.fail(401, "未登录");
+    // 原有逻辑
+}

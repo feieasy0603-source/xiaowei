@@ -1,0 +1,151 @@
+@import './compact-form.css';
+
+:root {
+  --xw-primary: #3b82f6;
+  --xw-primary-dark: #2563eb;
+  --xw-primary-light: #60a5fa;
+  --xw-gradient: linear-gradient(135deg, #3b82f6 0%, #6366f1 100%);
+  --xw-bg: #eef6fc;
+  --xw-bg-soft: linear-gradient(180deg, #e8f4fc 0%, #f5f9fc 40%, #f0f4f8 100%);
+  --xw-card: #ffffff;
+  --xw-text: #1e293b;
+  --xw-text-secondary: #475569;
+  --xw-muted: #94a3b8;
+  --xw-border: #e8eef4;
+  --xw-radius: 14px;
+  --xw-radius-lg: 18px;
+  --xw-shadow: 0 2px 16px rgb(15 23 42 / 6%);
+  --xw-shadow-sm: 0 1px 4px rgb(15 23 42 / 4%);
+  --xw-sidebar-width: 200px;
+  --xw-process-width: 440px;
+  --xw-topbar-height: 52px;
+  font-family: 'PingFang SC', 'Microsoft YaHei', system-ui, sans-serif;
+  line-height: 1.5;
+  color: var(--xw-text);
+  background: var(--xw-bg);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+#app {
+  min-height: 100vh;
+}
+
+a {
+  color: var(--xw-primary);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--xw-primary-dark);
+}
+
+/* Element Plus overrides */
+.el-button--primary {
+  --el-button-bg-color: var(--xw-primary);
+  --el-button-border-color: var(--xw-primary);
+  --el-button-hover-bg-color: var(--xw-primary-dark);
+  --el-button-hover-border-color: var(--xw-primary-dark);
+}
+
+.el-radio__input.is-checked .el-radio__inner {
+  background: var(--xw-primary);
+  border-color: var(--xw-primary);
+}
+
+.el-radio__input.is-checked + .el-radio__label {
+  color: var(--xw-primary-dark);
+}
+
+.el-checkbox__input.is-checked .el-checkbox__inner {
+  background: var(--xw-primary);
+  border-color: var(--xw-primary);
+}
+
+.el-input__wrapper:focus-within {
+  box-shadow: 0 0 0 1px var(--xw-primary-light) inset;
+}
+
+.xw-card {
+  background: var(--xw-card);
+  border-radius: var(--xw-radius);
+  border: 1px solid var(--xw-border);
+  padding: 20px 24px;
+  box-shadow: var(--xw-shadow-sm);
+}
+
+.xw-section-title {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 16px;
+  padding-left: 10px;
+  border-left: 4px solid var(--xw-primary);
+  color: var(--xw-text);
+}
+
+.xw-hint {
+  color: var(--xw-muted);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.xw-tip-orange {
+  color: #ea580c;
+  font-size: 13px;
+}
+
+/* 原站 intelligent-writing 布局 */
+.intelligent-writing {
+  width: 100%;
+}
+
+.layout-container {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.intelligent-writing-content {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(300px, 36%);
+  gap: 24px;
+  align-items: start;
+}
+
+.intelligent-writing-middle {
+  min-width: 0;
+  flex-shrink: 0;
+}
+
+.intelligent-writing-right {
+  min-width: 0;
+}
+
+@media (max-width: 1024px) {
+  .intelligent-writing-content {
+    grid-template-columns: 1fr;
+  }
+
+  .col-form {
+    order: 1;
+  }
+
+  .col-process {
+    order: 2;
+  }
+
+  .intelligent-writing-middle {
+    width: 100%;
+    max-width: 440px;
+    margin: 0 auto;
+  }
+}

@@ -1,0 +1,24 @@
+// 在 AiModelUsageService.summary() 中替换为：
+
+    public Map<String, Object> summary() {
+        Object[] agg = repository.aggregateTotals();
+        long prompt = agg != null && agg[0] != null ? ((Number) agg[0]).longValue() : 0;
+        long completion = agg != null && agg[1] != null ? ((Number) agg[1]).longValue() : 0;
+        long total = agg != null && agg[2] != null ? ((Number) agg[2]).longValue() : 0;
+        long requests = agg != null && agg[3] != null ? ((Number) agg[3]).longValue() : 0;
+        long modelCount = agg != null && agg[4] != null ? ((Number) agg[4]).longValue() : 0;
+
+        List<Map<String, Object>> topModels = repository.findAllByOrderByTotalTokensDesc().stream()
+                .limit(20)
+                .map(this::toMap)
+                .toList();
+
+        Map<String, Object> m = new HashMap<>();
+        m.put("modelCount", modelCount);
+        m.put("promptTokens", prompt);
+        m.put("completionTokens", completion);
+        m.put("totalTokens", total);
+        m.put("requestCount", requests);
+        m.put("models", topModels);
+        return m;
+    }

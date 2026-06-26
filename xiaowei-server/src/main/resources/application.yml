@@ -1,0 +1,117 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /api
+
+spring:
+  application:
+    name: xiaowei-server
+  config:
+    import:
+      - optional:file:.env[.properties]
+      - optional:file:.env.server[.properties]
+      - optional:file:xiaowei-server/.env[.properties]
+  profiles:
+    active: ${SPRING_PROFILES_ACTIVE:dev,mysql}
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+    properties:
+      hibernate:
+        format_sql: true
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+  servlet:
+    multipart:
+      max-file-size: ${MAX_UPLOAD_FILE_SIZE:20MB}
+      max-request-size: ${MAX_UPLOAD_REQUEST_SIZE:20MB}
+
+xiaowei:
+  rate-limit:
+    lookup-max: ${XIAOWEI_RATE_LIMIT_LOOKUP_MAX:30}
+  auth:
+    demo-enabled: ${AUTH_DEMO_ENABLED:false}
+  support:
+    phone: ${SUPPORT_PHONE:}
+    wechat-id: ${SUPPORT_WECHAT_ID:}
+  referral:
+    inviter-reward: ${REFERRAL_INVITER_REWARD:5.00}
+    invitee-reward: ${REFERRAL_INVITEE_REWARD:2.00}
+    frontend-base-url: ${REFERRAL_FRONTEND_BASE_URL:}
+  jwt:
+    secret: ${JWT_SECRET:xiaowei-dev-secret-change-in-production-min-32-chars}
+    expiration-ms: 86400000
+  storage:
+    # 相对路径在启动时解析为 xiaowei-server/data/uploads（兼容父目录工作区）
+    local-dir: ${STORAGE_DIR:./data/uploads}
+    max-upload-bytes: ${STORAGE_MAX_UPLOAD_BYTES:20971520}
+  ai:
+    mock: ${XIAOWEI_AI_MOCK:false}
+    allow-mock: ${XIAOWEI_AI_ALLOW_MOCK:false}
+    provider: ${XIAOWEI_AI_PROVIDER:openai}
+    model-name: ${XIAOWEI_AI_MODEL_NAME:gpt-4o-mini}
+    base-url: ${XIAOWEI_AI_BASE_URL:}
+    timeout-ms: 120000
+    max-concurrency: 4
+    global-concurrency-mode: auto
+    slot-acquire-timeout-ms: 90000
+    temperature: 0.7
+  job:
+    core-pool-size: 2
+    max-pool-size: 8
+    queue-capacity: 200
+  wallet:
+    allow-direct-recharge: ${XIAOWEI_WALLET_ALLOW_DIRECT_RECHARGE:false}
+  literature:
+    openalex-enabled: ${LITERATURE_OPENALEX_ENABLED:true}
+    openalex-min-local: ${LITERATURE_OPENALEX_MIN_LOCAL:8}
+  cors:
+    allowed-origins: ${CORS_ALLOWED_ORIGINS:}
+  payment:
+    callback-secret: ${PAY_CALLBACK_SECRET:xiaowei-pay-dev-secret}
+    mock-enabled: ${PAYMENT_MOCK_ENABLED:false}
+    wechat:
+      enabled: ${WECHAT_PAY_ENABLED:false}
+      app-id: ${WECHAT_APP_ID:}
+      mch-id: ${WECHAT_MCH_ID:}
+      api-v3-key: ${WECHAT_API_V3_KEY:}
+      serial-no: ${WECHAT_SERIAL_NO:}
+      private-key-pem: ${WECHAT_PRIVATE_KEY_PEM:}
+      notify-url: ${WECHAT_NOTIFY_URL:}
+    alipay:
+      enabled: ${ALIPAY_PAY_ENABLED:false}
+      app-id: ${ALIPAY_APP_ID:}
+      private-key-pem: ${ALIPAY_PRIVATE_KEY_PEM:}
+      alipay-public-key-pem: ${ALIPAY_PUBLIC_KEY_PEM:}
+      gateway-url: ${ALIPAY_GATEWAY_URL:https://openapi.alipay.com/gateway.do}
+      notify-url: ${ALIPAY_NOTIFY_URL:}
+
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+
+---
+spring:
+  config:
+    activate:
+      on-profile: dev
+  datasource:
+    url: jdbc:mysql://${MYSQL_HOST:localhost}:${MYSQL_PORT:3306}/${MYSQL_DB:xiaowei}?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true&useSSL=false
+    username: ${MYSQL_USER:root}
+    password: ${MYSQL_PASSWORD:}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+---
+spring:
+  config:
+    activate:
+      on-profile: mysql
+  datasource:
+    url: jdbc:mysql://${MYSQL_HOST:localhost}:${MYSQL_PORT:3306}/${MYSQL_DB:xiaowei}?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true&useSSL=false
+    username: ${MYSQL_USER:root}
+    password: ${MYSQL_PASSWORD:}
+    driver-class-name: com.mysql.cj.jdbc.Driver
