@@ -291,4 +291,4 @@ mvn -DskipTests package
 
 ## License
 
-当前仓库未声明开源许可证。若要公开给他人复用，请先补充合适的 License。
+本项目采用 [MIT License](./LICENSE) 开源。
